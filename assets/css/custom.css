@@ -1,0 +1,16 @@
+#clients {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#clients img:not(:hover) {
+  filter:grayscale(1);
+      transition: filter 2s;
+
+}
+
+#clients img {
+    transition: filter 0.25s;
+    flex-grow: 1 0 21%;
+}
