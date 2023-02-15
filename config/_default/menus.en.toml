@@ -28,13 +28,13 @@
 [[main]]
  name = "WBENC"
  parent = "Certificates"
- url = "/certifications/wbenc_2023.pdf"
+ url = "https://rainbowcrow.com/certifications/wbenc_2023.pdf"
  weight = 22
 
 [[main]]
  name = "SBA-WOSB"
  parent = "Certificates"
- url = "/certifications/wosb_2023.pdf"
+ url = "https://rainbowcrow.com/certifications/wosb_2023.pdf"
  weight = 23
 
 [[main]]
@@ -87,7 +87,7 @@
 # the copyright notice. Configure as per the main menu above.
 
  #[[footer]]
-  # name = "Tags"
+  # name = "T"
   # pageRef = "tags"
   # weight = 10
 
