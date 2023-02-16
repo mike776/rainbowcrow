@@ -9,7 +9,7 @@ cascade:
 ---
 
 {{< lead >}}
-Those are products we are developed and manufacture for our clients.
+Products we developed and manufacture for our clients. All our products are approved and tested from respected transit authorities.
 {{< /lead >}}
 
 ---
