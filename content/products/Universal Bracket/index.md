@@ -1,6 +1,6 @@
 ---
 title: Universal Bracket Rittal -- occupy 1U
-date: 2018-08-01
+date: 2014-10-29
 draft: false
 description: "UBR"
 slug: "UBR"

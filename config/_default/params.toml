@@ -6,7 +6,7 @@
 # https://blowfish.page/docs/configuration/#theme-parameters
 
 colorScheme = "blowfish"
-defaultAppearance = "light" # valid options: light or dark
+defaultAppearance = "dark" # valid options: light or dark
 autoSwitchAppearance = false
 
 enableSearch = true
@@ -36,7 +36,7 @@ disableImageZoom = true
   showScrollToTop = true
 
 [homepage]
-  layout = "background" # valid options: page, profile, hero, card, background, custom
+  layout = "hero" # valid options: page, profile, hero, card, background, custom
   # homepageImage = "/img/iceland.jpg" # used in: hero, and card
   showRecent = false
   showRecentItems = 10
@@ -48,7 +48,7 @@ disableImageZoom = true
 
 [article]
   showDate = false
-  showViews = false
+  showViews = true
   showLikes = false
   showDateUpdated = false
   showAuthor = true
@@ -80,7 +80,7 @@ disableImageZoom = true
   showBreadcrumbs = false
   showSummary = false
   showViews = true
-  showLikes = true
+  showLikes = false
   showTableOfContents = false
   showCards = true
   groupByYear = false
@@ -113,14 +113,14 @@ disableImageZoom = true
   cardViewScreenWidth = false
 
 
-#[firebase]
-#  apiKey = "AIzaSyB5tqlqDky77Vb4Tc4apiHV4hRZI18KGiY"
-#  authDomain = "blowfish-21fff.firebaseapp.com"
-#  projectId = "blowfish-21fff"
-#  storageBucket = "blowfish-21fff.appspot.com"
-#  messagingSenderId = "60108104191"
-#  appId = "1:60108104191:web:039842ebe1370698b487ca"
-#  measurementId = "G-PEDMYR1V0K"
+[firebase]
+  apiKey = "AIzaSyCVBIyDrMj3DqSwZNMw8eahjg7S1_hmXEU"
+  authDomain = "rainbowcrow-9f76c.firebaseapp.com"
+  projectId = "rainbowcrow-9f76c"
+  storageBucket = "rainbowcrow-9f76c.appspot.com"
+  messagingSenderId = "245405313411"
+  appId = "1:245405313411:web:1699f277839fb5700d6eb6"
+  measurementId = "G-QKBD3LX7BF"
 
 [fathomAnalytics]
   # site = "ABC12345"

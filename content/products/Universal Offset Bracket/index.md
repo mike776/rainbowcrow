@@ -1,6 +1,6 @@
 ---
 title: Universal Offset Bracket Rittal -- occupy 1U
-date: 2018-08-01
+date: 2017-07-25
 draft: false
 description: "UOBR"
 slug: "UOBR"

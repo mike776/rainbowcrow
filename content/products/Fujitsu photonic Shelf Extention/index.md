@@ -1,6 +1,6 @@
 ---
 title: Fujitsu Photonic Extension -- occupy 3U
-date: 2018-08-01
+date: 2014-12-12
 draft: false
 description: "Fujitsu photonics shelf extension"
 slug: "Fujitsu photonics shelf extension"

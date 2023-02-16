@@ -1,6 +1,6 @@
 ---
 title: Shelf CD20  Dometic Refrigirator
-date: 2018-08-01
+date: 2016-05-16
 draft: false
 description: "CD20"
 slug: "CD20"

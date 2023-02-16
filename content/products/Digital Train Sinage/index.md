@@ -1,6 +1,6 @@
 ---
 title: Digital Train Signage for PATH NJ train
-date: 2018-08-01
+date: 2019-09-19
 draft: false
 description: "Digital Train signage"
 slug: "Digital Train signage"

@@ -1,6 +1,6 @@
 ---
 title: Fujitsu CDS Extension -- occupy 2U
-date: 2018-08-01
+date: 2014-06-14
 draft: false
 description: "Fujitsu CDS"
 slug: "Fujitsu CDS"

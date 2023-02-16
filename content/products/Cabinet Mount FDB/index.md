@@ -1,6 +1,6 @@
 ---
 title: Cabinet Mounted Fiber Distribution Box
-date: 2018-08-01
+date: 2017-12-10
 draft: false
 description: "CMFDB"
 slug: "CMFDB"

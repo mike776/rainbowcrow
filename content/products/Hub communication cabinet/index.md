@@ -1,6 +1,6 @@
 ---
 title: 1.5" Hub for Communication Cabinet
-date: 2018-08-01
+date: 2016-04-26
 draft: false
 description: "1.5 HUB"
 slug: "1.5 HUB"
