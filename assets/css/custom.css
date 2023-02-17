@@ -13,4 +13,5 @@
 #clients img {
     transition: filter 0.25s;
     flex-grow: 1 0 21%;
+    height: 100px;
 }
