@@ -38,7 +38,7 @@
  weight = 23
 
 [[main]]
-  pre = "email"
+  pre = "envelope"
   url = "mailto:sales@rainbowcrow.com"
   weight = 30
 
