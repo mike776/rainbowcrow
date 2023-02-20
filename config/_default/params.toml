@@ -26,7 +26,7 @@ smartTOCHideUnfocusedChildren = true
 disableImageZoom = true
 
 [header]
-  layout = "basic" # valid options: basic, fixed
+  layout = "fixed" # valid options: basic, fixed
 
 [footer]
   showMenu = true
