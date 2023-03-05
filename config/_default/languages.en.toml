@@ -7,13 +7,13 @@ rtl = false
 
 title = ""
 logo = "img/logo.png"
-description = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
+description = ""
 copyright = "&copy; 2023 Rainbow Crow, LLC. &#9755; 176 Camden Cay Drive, St. Augustine FL 32086 &#9754;"
 
 dateFormat = "2 January 2006"
 
 [author]
-  name = "RainbowCrow, LLC."
+  name = ""
   image = ""
   headline = ""
   bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
