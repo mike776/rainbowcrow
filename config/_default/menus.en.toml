@@ -28,13 +28,13 @@
 [[main]]
  name = "WBENC"
  parent = "Certificates"
- url = "https://rainbowcrow.com/certifications/wbenc_2023.pdf"
+ url = "https://rainbowcrow.com/certifications/wbenc_2024.pdf"
  weight = 22
 
 [[main]]
  name = "SBA-WOSB"
  parent = "Certificates"
- url = "https://rainbowcrow.com/certifications/wosb_2023.pdf"
+ url = "https://rainbowcrow.com/certifications/wosb_2024.pdf"
  weight = 23
 
 [[main]]
