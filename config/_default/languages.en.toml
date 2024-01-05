@@ -8,12 +8,12 @@ rtl = false
 title = ""
 logo = "img/logo.png"
 description = ""
-copyright = "&copy; 2023 Rainbow Crow, LLC. &#9755; 176 Camden Cay Drive, St. Augustine FL 32086 &#9754;"
+# copyright = "&copy; 2023 Rainbow Crow, LLC. &#9755; 176 Camden Cay Drive, St. Augustine FL 32086 &#9754;"
 
 dateFormat = "2 January 2006"
 
 [author]
-  name = ""
+  name = "Rainbow Crow, LLC. &#9755; 176 Camden Cay Drive, St. Augustine FL 32086 &#9754;"
   image = ""
   headline = ""
   bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
