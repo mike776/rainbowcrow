@@ -1,9 +1,7 @@
 ---
-title: "Welcome Rainbow Crow"
+title: ""
 description: "This is ."
 ---
-
-# Rainbow Crow, LLC.
 
 {{< lead >}}
 We are a small Woman-owned Business Enterprise (_WBE_). Rainbow Crow serves as an agent to manufacture, develop, and purchase goods. We offer services such as commissioning, testing, and troubleshooting of technology such as software, machines or networks. Our team is comprised of highly skilled engineers from an extensive breadth of fields including mechanical, electrical, and software engineering. Our goal is to create products and provide services of the highest quality in an efficient and hassle-free manner for our clients.

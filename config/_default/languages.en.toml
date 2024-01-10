@@ -13,7 +13,7 @@ description = ""
 dateFormat = "2 January 2006"
 
 [author]
-  name = "Rainbow Crow, LLC. &#9755; 176 Camden Cay Drive, St. Augustine FL 32086 &#9754;"
+  name = "Rainbow Crow, LLC."
   image = ""
   headline = ""
   bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
