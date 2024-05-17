@@ -2,6 +2,7 @@
 title: ""
 description: "This is ."
 ---
+# <center>  Rainbow Crow, LLC. </center>
 
 {{< lead >}}
 We are a small Woman-owned Business Enterprise (_WBE_). Rainbow Crow serves as an agent to manufacture, develop, and purchase goods. We offer services such as commissioning, testing, and troubleshooting of technology such as software, machines or networks. Our team is comprised of highly skilled engineers from an extensive breadth of fields including mechanical, electrical, and software engineering. Our goal is to create products and provide services of the highest quality in an efficient and hassle-free manner for our clients.
@@ -32,9 +33,9 @@ Maximizing your efficiency is critical to your business' long term competitive v
 {{< /lead >}}
 
 
-## Some of our clients
+### Some of our clients
 {{<lead>}} We work with some of the biggest names in the industry {{</lead>}}
-
+<br> <br>
 <div id = "clients">
 <img src="img/clients/path.png" class="">
 <img src="img/clients/mta.png">
