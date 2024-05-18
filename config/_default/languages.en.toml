@@ -3,14 +3,14 @@ languageCode = "en"
 languageName = "English"
 displayName = "EN"
 isoCode = "en"
-weight = 1
+# weight = 1
 rtl = true
+
+[params]
 
 title = ""
 logo = "img/logo.png"
-description = ""
-# copyright = "&copy; 2023 Rainbow Crow, LLC. &#9755; 176 Camden Cay Drive, St. Augustine FL 32086 &#9754;"
-
+description = "RC Design"
 dateFormat = "2 January 2006"
 
 [author]
