@@ -8,16 +8,16 @@ rtl = true
 
 [params]
 
-title = ""
+title = "Rainbow Crow, LLC."
 logo = "img/logo.png"
 description = "RC Design"
 dateFormat = "2 January 2006"
 
-[author]
+[Site.Params.Author]
   name = "Rainbow Crow, LLC."
   image = ""
-  headline = ""
-  bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
+  headline = "Rainbow Crow, LLC."
+#  bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
 #  links = [
 #    { twitter = "https://twitter.com/" },
 #  ]

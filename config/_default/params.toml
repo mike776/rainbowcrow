@@ -34,6 +34,8 @@ disableImageZoom = true
   showThemeAttribution = false
   showAppearanceSwitcher = true
   showScrollToTop = true
+  showcompanyName = true
+  companyName = "Rainbow Crow, LLC."
 
 [homepage]
   layout = "page" # valid options: page, profile, hero, card, background, custom
@@ -100,6 +102,7 @@ disableImageZoom = true
   showLikes = true
   showTableOfContents = true
   cardView = false
+
 
 [term]
   showHero = true
