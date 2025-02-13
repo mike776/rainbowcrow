@@ -10,14 +10,14 @@ defaultAppearance = "dark" # valid options: light or dark
 autoSwitchAppearance = false
 
 enableSearch = true
-enableCodeCopy = true
+enableCodeCopy = false
 
 mainSections = ["home"]
 # robots = ""
 
 disableImageOptimization = false
 
-defaultBackgroundImage = ""
+defaultBackgroundImage = "IMAGE.jpg"
 
 highlightCurrentMenuArea = true
 smartTOC = true
@@ -34,8 +34,6 @@ disableImageZoom = true
   showThemeAttribution = false
   showAppearanceSwitcher = true
   showScrollToTop = true
-  showcompanyName = true
-  companyName = "Rainbow Crow, LLC."
 
 [homepage]
   layout = "page" # valid options: page, profile, hero, card, background, custom
@@ -51,12 +49,13 @@ disableImageZoom = true
 [article]
   showDate = false
   showViews = true
-  showLikes = false
+  showLikes = true
   showDateUpdated = false
   showAuthor = true
   showHero = true
   heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background
+  layoutBackgroundHeaderSpace = true
   showBreadcrumbs = false
   showDraftLabel = true
   showEdit = false
@@ -64,7 +63,7 @@ disableImageZoom = true
   editAppendPath = true
   seriesOpened = false
   showHeadingAnchors = true
-  showPagination = false
+  showPagination = true
   invertPagination = false
   showReadingTime = false
   showTableOfContents = true
@@ -106,7 +105,7 @@ disableImageZoom = true
 
 [term]
   showHero = true
-  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   showBreadcrumbs = false
   showViews = true
   showLikes = true

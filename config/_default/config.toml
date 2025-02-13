@@ -15,7 +15,7 @@ pagerSize = 20
 summaryLength = 30
 
 buildDrafts = false
-buildFuture = false
+buildFuture = true
 
 googleAnalytics = "G-BTWNF48RZS"
 
@@ -27,7 +27,6 @@ googleAnalytics = "G-BTWNF48RZS"
   category = "categories"
   author = "authors"
   series = "series"
-  title = "Rainbow Crow, LLC."
 
 [sitemap]
   changefreq = 'always'
