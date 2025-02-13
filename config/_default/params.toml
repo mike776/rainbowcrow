@@ -82,7 +82,7 @@ disableImageZoom = true
   showBreadcrumbs = false
   showSummary = false
   showViews = true
-  showLikes = false
+  showLikes = true
   showTableOfContents = false
   showCards = true
   groupByYear = false
@@ -96,7 +96,7 @@ disableImageZoom = true
 [taxonomy]
   showTermCount = true
   showHero = true
-  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   showBreadcrumbs = false
   showViews = true
   showLikes = true

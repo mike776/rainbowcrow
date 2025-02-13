@@ -7,12 +7,12 @@ isoCode = "en"
 rtl = true
 
 [params]
-  displayName = "EN"
-  isoCode = "en"
-  rtl = false
-  dateFormat = "2 January 2006"
+title = "Rainbow Crow, LLC."
+logo = "img/logo.png"
+description = "RC Design"
+dateFormat = "2 January 2006"
 
-[params.author]
+[Site.Params.Author]
   name = "Rainbow Crow, LLC."
   image = "/favicon-32x32.png"
   headline = "Rainbow Crow, LLC."
