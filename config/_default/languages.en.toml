@@ -7,15 +7,14 @@ isoCode = "en"
 rtl = true
 
 [params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
 
-title = "Rainbow Crow, LLC."
-logo = "img/logo.png"
-description = "RC Design"
-dateFormat = "2 January 2006"
-
-[Site.Params.Author]
+[params.author]
   name = "Rainbow Crow, LLC."
-  image = ""
+  image = "/favicon-32x32.png"
   headline = "Rainbow Crow, LLC."
 #  bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
 #  links = [
