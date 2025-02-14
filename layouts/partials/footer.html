@@ -44,8 +44,9 @@
       {{- else }}
       &copy;
       {{ now.Format "2006" }}
-      {{ .Site.Author.name | markdownify | emojify }}
+      {{ .Site.Params.Author.name | markdownify | emojify }}
       {{- end }}
+      Rainbow Crow, LLC.
     </p>
     {{ end }}
     </div>
