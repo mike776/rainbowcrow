@@ -42,7 +42,7 @@
       {{- with replace .Site.Params.copyright "{ year }" now.Year  }}
       {{ . | emojify | markdownify }}
       {{- else }}
-      &copy;
+      &copy;&nbsp;&nbsp;&nbsp;&nbsp;
       {{ now.Format "2006" }}
       {{ .Site.Params.Author.name | markdownify | emojify }}
       {{- end }}
