@@ -12,7 +12,7 @@ logo = "img/logo.png"
 description = "RC Design"
 dateFormat = "2 January 2006"
 
-[site.params.author]
+[params.author]
   name = "Rainbow Crow, LLC."
   image = "/favicon-32x32.png"
   headline = "Rainbow Crow, LLC."

@@ -42,11 +42,10 @@
       {{- with replace .Site.Params.copyright "{ year }" now.Year  }}
       {{ . | emojify | markdownify }}
       {{- else }}
-      &copy;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&copy;&nbsp;&nbsp;&nbsp;&nbsp;
       {{ now.Format "2006" }}
       {{ .Site.Params.Author.name | markdownify | emojify }}
       {{- end }}
-      Rainbow Crow, LLC.
     </p>
     {{ end }}
     </div>
