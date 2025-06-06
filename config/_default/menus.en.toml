@@ -37,6 +37,12 @@
  url = "https://rainbowcrow.com/certifications/wosb_2025.pdf"
  weight = 23
 
+ [[main]]
+ name = "FDMS"
+ parent = "Certificates"
+ url = "https://rainbowcrow.com/certifications/fdms_2027.pdf"
+ weight = 24
+
 [[main]]
   pre = "envelope"
   url = "mailto:sales@rainbowcrow.com"
