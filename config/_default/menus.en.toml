@@ -29,25 +29,25 @@
  name = "WBENC"
  parent = "Certificates"
  url = "https://rainbowcrow.com/certifications/wbenc_2026.pdf"
- weight = 22
+ weight = 23
 
 [[main]]
  name = "SBA-WOSB"
  parent = "Certificates"
  url = "https://rainbowcrow.com/certifications/wosb_2026.pdf"
- weight = 23
+ weight = 24
 
  [[main]]
  name = "FDMS"
  parent = "Certificates"
  url = "https://rainbowcrow.com/certifications/fdms_2027.pdf"
- weight = 24
+ weight = 25
 
   [[main]]
  name = "PANYNJ"
  parent = "Certificates"
  url = "https://rainbowcrow.com/certifications/Panynj.png"
- weight = 25
+ weight = 22
 
 [[main]]
   pre = "envelope"
