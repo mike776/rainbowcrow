@@ -43,6 +43,12 @@
  url = "https://rainbowcrow.com/certifications/fdms_2027.pdf"
  weight = 24
 
+  [[main]]
+ name = "PANYNJ"
+ parent = "Certificates"
+ url = "https://rainbowcrow.com/certifications/Panynj.png"
+ weight = 25
+
 [[main]]
   pre = "envelope"
   url = "mailto:sales@rainbowcrow.com"
