@@ -844,30 +844,7 @@ html.dark .rc-product-nav a { color: var(--rc-orange); }
 .rc-contact .rc-shell { padding-top: 52px; padding-bottom: 64px; }
 .rc-contact-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 52px; align-items: start; }
 
-.rc-form { display: grid; gap: 16px; }
-.rc-field { display: grid; gap: 6px; }
-.rc-field label {
-  font-family: var(--rc-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--rc-mute);
-}
-.rc-field input,
-.rc-field textarea {
-  font-family: var(--rc-sans);
-  font-size: 14.5px;
-  color: var(--rc-ink);
-  background: var(--rc-panel);
-  border: 1px solid var(--rc-line);
-  border-radius: 2px;
-  padding: 10px 12px;
-  width: 100%;
-}
-.rc-field textarea { min-height: 130px; resize: vertical; }
-.rc-field input:focus,
-.rc-field textarea:focus { outline: 2px solid var(--rc-orange); outline-offset: -1px; border-color: var(--rc-orange); }
-.rc-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* No form styles here on purpose: /contact/ is email and telephone only. */
 
 .rc-form-note {
   font-size: 13px;
@@ -985,7 +962,6 @@ html.dark .rc-titleblock .rc-v a { color: var(--rc-orange); }
   .rc-titleblock { grid-template-columns: 1fr; }
   .rc-titleblock > div { border-left: 0; border-top: 1px solid var(--rc-line); }
   .rc-titleblock-cta { border-top: 0; }
-  .rc-field-row { grid-template-columns: 1fr; }
   .rc-spec div { grid-template-columns: 1fr; gap: 2px; }
 }
 

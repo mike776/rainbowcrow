@@ -25,11 +25,6 @@ smartTOCHideUnfocusedChildren = true
 
 disableImageZoom = true
 
-# Endpoint for the quote form on /contact/ (Formspree, Netlify Forms, Basin...).
-# While this is unset the contact page shows a mailto/telephone fallback instead
-# of a form that would silently drop enquiries.
-# contactFormAction = "https://formspree.io/f/xxxxxxxx"
-
 [header]
   layout = "basic" # overridden in layouts/partials/header/basic.html
 
