@@ -1,0 +1,151 @@
+{{/*
+  Cut Sheet header. Overrides themes/blowfish/layouts/partials/header/basic.html.
+
+  Two bands:
+    1. A blueprint-coloured ticker carrying the certifications. These qualify the
+       company for set-aside work, so they sit above everything else rather than
+       inside a dropdown.
+    2. The navigation, ending in the quote CTA the old site had nowhere.
+
+  The mobile drawer deliberately reuses the theme's #menu-button /
+  #menu-close-button / #menu-wrapper ids so themes/blowfish/assets/js/mobilemenu.js
+  drives it. That script binds those ids with no null check, so removing them
+  would throw on every page.
+*/}}
+
+{{ with site.Data.certifications.cert }}
+<div class="rc-ticker">
+  <div class="rc-shell">
+    {{ range . }}
+    <a href="{{ .file | relURL }}" target="_blank" rel="noopener"
+       title="{{ .name }} &ndash; open certificate">{{ .code }}</a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
+<header class="rc-header main-menu">
+  <div class="rc-shell">
+
+    <a class="rc-brand" href="{{ "" | relLangURL }}">
+      {{ with site.Params.Logo }}
+        {{ $logo := resources.Get . }}
+        {{ with $logo }}
+        <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}"
+             class="nozoom" alt="" />
+        {{ end }}
+      {{ end }}
+      <span>
+        <b>Rainbow Crow</b>
+        <small>RC Design</small>
+      </span>
+    </a>
+
+    {{/* Desktop */}}
+    {{ $productsPage := site.GetPage "/products" }}
+    <nav class="rc-nav rc-nav-desktop" aria-label="Main">
+      {{ range site.Menus.main }}
+      {{ $active := or (eq $.RelPermalink .URL) (and (ne .URL "/") (hasPrefix $.RelPermalink .URL)) }}
+      {{/* The products entry expands into the section's own pages, so the menu
+           never drifts out of step with the catalog. */}}
+      {{ if and $productsPage (eq .URL $productsPage.RelPermalink) }}
+      <div class="rc-dd">
+        <a href="{{ .URL }}" class="rc-dd-toggle {{ if $active }}rc-active{{ end }}"
+           {{ if $active }}aria-current="page"{{ end }}>{{ .Name }}<svg class="rc-chev" viewBox="0 0 24 24"
+             aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round"><path d="M6 9l6 6 6-6" /></svg></a>
+        <ul class="rc-dd-menu">
+          {{ range $productsPage.Pages.ByWeight }}
+          <li>
+            <a href="{{ .RelPermalink }}">
+              <span class="rc-dd-name">{{ .Title | safeHTML }}</span>
+              {{ with .Params.partNumber }}<span class="rc-dd-pn">{{ . }}</span>{{ end }}
+            </a>
+          </li>
+          {{ end }}
+          <li class="rc-dd-all"><a href="{{ $productsPage.RelPermalink }}">View the full catalog &rarr;</a></li>
+        </ul>
+      </div>
+      {{ else }}
+      <a href="{{ .URL }}" class="{{ if $active }}rc-active{{ end }}"
+         {{ if $active }}aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+      {{ end }}
+
+      {{ if site.Params.enableSearch | default false }}
+      <button id="search-button" class="rc-icon-btn" aria-label="{{ i18n "search.open_button_title" }}"
+              title="{{ i18n "search.open_button_title" }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      {{ end }}
+
+      {{ if site.Params.footer.showAppearanceSwitcher | default false }}
+      <button id="appearance-switcher" class="rc-icon-btn" type="button" aria-label="Toggle dark mode">
+        <span class="flex dark:hidden">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+        </span>
+        <span class="hidden dark:flex">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5"/></svg>
+        </span>
+      </button>
+      {{ end }}
+
+      <a class="rc-btn" href="{{ "contact" | relLangURL }}">Request a quote</a>
+    </nav>
+
+    {{/* Mobile */}}
+    <div class="rc-nav-mobile">
+      {{ if site.Params.enableSearch | default false }}
+      <button id="search-button-mobile" class="rc-icon-btn" aria-label="{{ i18n "search.open_button_title" }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      {{ end }}
+      {{ if site.Params.footer.showAppearanceSwitcher | default false }}
+      <button id="appearance-switcher-mobile" class="rc-icon-btn" type="button" aria-label="Toggle dark mode">
+        <span class="flex dark:hidden">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+        </span>
+        <span class="hidden dark:flex">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5"/></svg>
+        </span>
+      </button>
+      {{ end }}
+      <button id="menu-button" class="rc-icon-btn" type="button" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<div id="menu-wrapper" class="rc-drawer">
+  <div class="rc-drawer-top">
+    <span class="rc-label">Menu</span>
+    <button id="menu-close-button" class="rc-icon-btn" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <ul>
+    {{ range site.Menus.main }}
+    <li>
+      <a href="{{ .URL }}">{{ .Name }}</a>
+      {{ if and $productsPage (eq .URL $productsPage.RelPermalink) }}
+      <ul class="rc-drawer-sub">
+        {{ range $productsPage.Pages.ByWeight }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title | safeHTML }}</a></li>
+        {{ end }}
+      </ul>
+      {{ end }}
+    </li>
+    {{ end }}
+    <li><a href="{{ "contact" | relLangURL }}">Request a quote</a></li>
+  </ul>
+</div>

@@ -1,0 +1,74 @@
+{{ define "mainclass" }}rc-full{{ end }}
+
+{{ define "main" }}
+{{ $img := .Resources.GetMatch "featured.*" }}
+
+<section class="rc-page-head">
+  <div class="rc-shell">
+    <p class="rc-breadcrumb">
+      <a href="{{ "products" | relLangURL }}">Catalog</a>
+      {{ with .Params.category }} &rsaquo; {{ . }}{{ end }}
+    </p>
+    <h1>{{ .Title | safeHTML }}</h1>
+    {{ with .Params.description }}<p class="rc-intro">{{ . | safeHTML }}</p>{{ end }}
+  </div>
+</section>
+
+<section class="rc-product">
+  <div class="rc-shell">
+    <div class="rc-product-grid">
+
+      <div>
+        {{ with $img }}
+        <figure class="rc-plate">
+          <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="nozoom" />
+          <figcaption>
+            {{ with $.Params.partNumber }}<b>{{ . }}</b>{{ end }}
+            <span class="rc-label">{{ $.Params.category | default "Product" }}</span>
+          </figcaption>
+        </figure>
+        {{ end }}
+
+        {{/* Specification block, set like the parameter list on a cut sheet. */}}
+        <dl class="rc-spec">
+          {{/* Omitted rather than shown as pending: entries like the PATH signage
+               system are projects, not stock parts, so they never carry a number. */}}
+          {{ with .Params.partNumber }}
+          <div>
+            <dt>Part no.</dt>
+            <dd class="rc-pn">{{ . }}</dd>
+          </div>
+          {{ end }}
+          {{ with .Params.mounting }}
+          <div><dt>Mounting</dt><dd>{{ . }}</dd></div>
+          {{ end }}
+          {{ with .Params.rackUnits }}
+          <div><dt>Rack units</dt><dd>{{ . }}&thinsp;RU</dd></div>
+          {{ end }}
+          {{ with .Params.category }}
+          <div><dt>Category</dt><dd>{{ . }}</dd></div>
+          {{ end }}
+        </dl>
+
+        <div class="rc-cta-row" style="margin-top:26px">
+          {{ with .Params.cutSheet }}
+          <a class="rc-btn" href="{{ . | relURL }}" target="_blank" rel="noopener">Download cut sheet (PDF)</a>
+          {{ end }}
+          <a class="rc-btn rc-btn--ghost" href="{{ "contact" | relLangURL }}">Request a quote</a>
+        </div>
+      </div>
+
+      <div class="rc-prose">
+        {{ .Content }}
+      </div>
+
+    </div>
+
+    <nav class="rc-product-nav">
+      <span>{{ with .PrevInSection }}<a href="{{ .RelPermalink }}">&larr; {{ .Title | safeHTML }}</a>{{ end }}</span>
+      <span>{{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title | safeHTML }} &rarr;</a>{{ end }}</span>
+    </nav>
+  </div>
+</section>
+
+{{ end }}

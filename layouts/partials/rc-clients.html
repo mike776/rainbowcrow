@@ -1,0 +1,15 @@
+{{/*
+  Client strip. Heights are normalised in CSS (.rc-clients img) - the previous
+  build let these render at their native size, so the logos were wildly
+  mismatched and the row wrapped onto a second line.
+*/}}
+<div class="rc-clients">
+  <div class="rc-shell">
+    <p class="rc-label">Supplying</p>
+    <ul>
+      {{ range site.Data.clients.client }}
+      <li><img src="{{ .logo | relURL }}" alt="{{ .name }}" loading="lazy" class="nozoom" /></li>
+      {{ end }}
+    </ul>
+  </div>
+</div>

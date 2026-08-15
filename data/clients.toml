@@ -1,0 +1,22 @@
+# Agency and prime-contractor logos shown in the "Supplying" strip.
+# `logo` is relative to /static.
+
+[[client]]
+  name = "PATH"
+  logo = "/img/clients/path.png"
+
+[[client]]
+  name = "MTA"
+  logo = "/img/clients/mta.png"
+
+[[client]]
+  name = "SEPTA"
+  logo = "/img/clients/septa.png"
+
+[[client]]
+  name = "TriMet"
+  logo = "/img/clients/trimet.png"
+
+[[client]]
+  name = "Siemens"
+  logo = "/img/clients/siemens.png"

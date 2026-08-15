@@ -4,12 +4,12 @@ languageName = "English"
 displayName = "EN"
 isoCode = "en"
 # weight = 1
-rtl = true
+rtl = false
 
 [params]
 title = "Rainbow Crow, LLC."
 logo = "img/logo.png"
-description = "RC Design"
+description = "Rainbow Crow, LLC. designs, manufactures and commissions rack hardware for transit authorities and their primes. Woman-owned, WBENC and SBA-WOSB certified."
 dateFormat = "2 January 2006"
 
 [params.author]

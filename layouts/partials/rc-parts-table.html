@@ -1,0 +1,45 @@
+{{/*
+  The parts table, shared by the homepage preview and /products/.
+
+  Call with:  partial "rc-parts-table.html" (dict "pages" $pages)
+
+  Part numbers, mounting and rack units come from each product's front matter
+  (see the index.md of each product), not from body copy - engineers cross-
+  reference by part number, so it has to be a real field.
+*/}}
+{{ $pages := .pages }}
+<div class="rc-table-wrap">
+  <table class="rc-table">
+    <thead>
+      <tr>
+        <th scope="col" style="width:22%">Part no.</th>
+        <th scope="col" style="width:34%">Description</th>
+        <th scope="col" style="width:22%">Mounting</th>
+        <th scope="col" style="width:8%">RU</th>
+        <th scope="col" style="width:14%">Cut sheet</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range $pages }}
+      <tr>
+        <td class="rc-pn {{ if not .Params.partNumber }}rc-pn--none{{ end }}">
+          {{ with .Params.partNumber }}{{ . }}{{ else }}&mdash;{{ end }}
+        </td>
+        <td class="rc-name">
+          <a href="{{ .RelPermalink }}">{{ .Title | safeHTML }}</a>
+          {{ with .Params.category }}<small>{{ . }}</small>{{ end }}
+        </td>
+        <td>{{ with .Params.mounting }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td class="rc-ru">{{ with .Params.rackUnits }}{{ . }}{{ else }}&mdash;{{ end }}</td>
+        <td class="rc-cut">
+          {{ with .Params.cutSheet }}
+          <a href="{{ . | relURL }}" target="_blank" rel="noopener">PDF &darr;</a>
+          {{ else }}
+          <span class="rc-ru">&mdash;</span>
+          {{ end }}
+        </td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+</div>

@@ -2,7 +2,7 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/getting-started/
 
-title = "RC Design"
+title = "Rainbow Crow"
 theme = "blowfish"
 baseURL = "https://rainbowcrow.com"
 defaultContentLanguage = "en"

@@ -1,0 +1,34 @@
+# Certifications shown on the homepage, the certifications page and the header ticker.
+# `file` is relative to /static.
+
+[[cert]]
+  code = "WBENC"
+  category = "National"
+  name = "Women's Business Enterprise National Council"
+  summary = "National WBE certification, recognised by corporate and government supplier-diversity programs."
+  file = "/certifications/wbenc_2027.pdf"
+  valid = "2027"
+
+[[cert]]
+  code = "SBA-WOSB"
+  category = "Federal"
+  name = "Woman-Owned Small Business"
+  summary = "U.S. Small Business Administration WOSB program — eligibility for federal set-aside contracts."
+  file = "/certifications/wosb_2027.pdf"
+  valid = "2027"
+
+[[cert]]
+  code = "PANYNJ"
+  category = "Authority"
+  name = "Port Authority of New York & New Jersey"
+  summary = "Approved supplier to the Port Authority of New York & New Jersey."
+  file = "/certifications/Panynj.png"
+  valid = "Current"
+
+[[cert]]
+  code = "FDMS"
+  category = "State"
+  name = "Florida Department of Management Services"
+  summary = "Registered vendor with the Florida Department of Management Services."
+  file = "/certifications/fdms_2027.pdf"
+  valid = "2027"

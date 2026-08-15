@@ -1,0 +1,67 @@
+{{ define "mainclass" }}rc-full{{ end }}
+
+{{ define "main" }}
+
+<section class="rc-page-head">
+  <div class="rc-shell">
+    <p class="rc-label">{{ .Params.eyebrow | default "Certifications" }}</p>
+    <h1>{{ .Params.headline | default .Title }}</h1>
+    {{ with .Params.intro }}<p class="rc-intro">{{ . }}</p>{{ end }}
+  </div>
+</section>
+
+<section class="rc-certs">
+  <div class="rc-shell">
+    <p class="rc-label">Current</p>
+    <h2 class="rc-section-title">Active certifications</h2>
+    <p class="rc-intro">Each certificate opens as issued. Agencies that need to verify against the
+      issuing body can do so with the codes below.</p>
+    {{ partial "rc-certifications.html" . }}
+
+    {{/*
+      Prior years, read straight off /static/certifications. Agencies awarding
+      set-aside work often need evidence that certification has been continuous,
+      and the files were already in the repository going back to 2019.
+    */}}
+    {{ $archive := slice }}
+    {{ range readDir "static/certifications" }}
+      {{ $name := .Name }}
+      {{ if and (hasPrefix $name "wbenc_") (hasSuffix $name ".pdf") }}
+        {{ $archive = $archive | append (dict "prog" "WBENC" "year" (replaceRE `^wbenc_(\d{4}).*` "$1" $name) "rev" (findRE `^wbenc_\d{4}_` $name) "file" $name) }}
+      {{ else if and (hasPrefix $name "wosb_") (hasSuffix $name ".pdf") }}
+        {{ $archive = $archive | append (dict "prog" "SBA-WOSB" "year" (replaceRE `^wosb_(\d{4}).*` "$1" $name) "rev" (findRE `^wosb_\d{4}_` $name) "file" $name) }}
+      {{ end }}
+    {{ end }}
+
+    {{ with $archive }}
+    <div class="rc-archive">
+      <p class="rc-label">Archive</p>
+      <h3>Every certificate issued to date</h3>
+      <p class="rc-form-note" style="margin-top:8px;border:0;padding-left:0">
+        Agencies that need to evidence continuity of certification can pull any year directly.
+      </p>
+      {{ range $prog := (slice "WBENC" "SBA-WOSB") }}
+        {{ $items := where $archive "prog" $prog }}
+        {{ with $items }}
+        <p class="rc-label" style="margin-top:18px">{{ $prog }}</p>
+        <ul class="rc-archive-list">
+          {{ range sort . "year" "desc" }}
+          <li><a href="{{ printf "/certifications/%s" .file | relURL }}" target="_blank" rel="noopener">{{ .year }}{{ if .rev }} rev{{ end }}</a></li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{ with .Content }}
+<section class="rc-about">
+  <div class="rc-shell">
+    <div class="rc-prose" style="grid-column:1/-1">{{ . }}</div>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}
