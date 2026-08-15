@@ -1,0 +1,30 @@
+{{ define "mainclass" }}rc-full{{ end }}
+
+{{ define "main" }}
+{{ $products := .Pages.ByWeight }}
+
+<section class="rc-page-head">
+  <div class="rc-shell">
+    <p class="rc-label">{{ .Params.eyebrow | default "Catalog" }}</p>
+    <h1>{{ .Params.headline | default .Title }}</h1>
+    {{ with .Params.intro }}<p class="rc-intro">{{ . }}</p>{{ end }}
+  </div>
+</section>
+
+<section class="rc-catalog">
+  <div class="rc-shell">
+    {{ partial "rc-parts-table.html" (dict "pages" $products) }}
+  </div>
+</section>
+
+<section class="rc-certs">
+  <div class="rc-shell">
+    <p class="rc-label">Approvals</p>
+    <h2 class="rc-section-title">Every part is approved by the authority it was built for</h2>
+    <p class="rc-intro">Cut sheets above are the current revision. If you need an earlier revision,
+      a variant, or a drawing in a different format, ask and we will send it.</p>
+    {{ partial "rc-certifications.html" . }}
+  </div>
+</section>
+
+{{ end }}

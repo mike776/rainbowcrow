@@ -1,16 +1,20 @@
 ---
-title: Digital Train Signage for PATH NJ train
-date: 2019-09-19
-draft: false
-description: "Digital Train signage"
+title: "Digital Train Signage for PATH"
+description: "Public-facing signage system delivering updates within 100&nbsp;ms, built to a four-month timeline."
 slug: "Digital Train signage"
-tags: ["advanced", "css", "docs"]
-series_order: 3
+weight: 90
+date: 2019-09-19
+
+# Catalog fields. These drive the parts table on /products/ and the spec
+# block on the product page - do not repeat them in the body copy.
+# TODO: this product's part number was a copy of the CD20 shelf's in the
+# previous content; left blank until the correct number is confirmed.
+partNumber: ""
+mounting: ""
+rackUnits: ""
+cutSheet: ""
+category: "Software & systems"
 ---
-
-
-
-
 In 2018 we took on the Digital Signage project for the Path trains. Our software parses the entirely custom binary format provided by the reporting systems and sends updates to the signage within 100 milliseconds. As a piece of public facing infrastructure we followed a disaster recovery protocol where over half of the machines in our system can go down and the system remains fully functional.
 
 Our signage features included:

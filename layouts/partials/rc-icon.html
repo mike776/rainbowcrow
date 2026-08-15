@@ -1,0 +1,15 @@
+{{/* Line icons for the capability columns. Called as: partial "rc-icon.html" "factory" */}}
+{{ $n := . }}
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  {{ if eq $n "factory" }}
+  <path d="M3 20h18M5 20V9l5-4 5 4v11M9 20v-5h4v5M17 20v-7l3-2v9" />
+  {{ else if eq $n "code" }}
+  <path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14" />
+  {{ else if eq $n "checklist" }}
+  <path d="M4 6h16M4 12h10M4 18h7" /><circle cx="17.5" cy="17.5" r="3.2" /><path d="M20 20l2.2 2.2" />
+  {{ else if eq $n "chart" }}
+  <path d="M4 19V5M4 19h16M8 15l3-4 3 3 5-7" />
+  {{ else }}
+  <circle cx="12" cy="12" r="8" />
+  {{ end }}
+</svg>

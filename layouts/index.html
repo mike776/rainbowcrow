@@ -1,0 +1,84 @@
+{{ define "mainclass" }}rc-full{{ end }}
+
+{{ define "main" }}
+{{ $products := where site.RegularPages "Section" "products" }}
+{{ $certs := site.Data.certifications.cert }}
+{{ $clients := site.Data.clients.client }}
+
+{{/* ---------- Hero ----------
+     Type-only by request: no product imagery on the homepage. The drafting-grid
+     ground and the corner ticks carry the sheet character instead. */}}
+<section class="rc-hero rc-hero--plain">
+  <div class="rc-shell">
+    <p class="rc-label">{{ .Params.eyebrow }}</p>
+    <h1>{{ .Params.headline }}</h1>
+    <p class="rc-intro">{{ .Params.intro }}</p>
+
+    <div class="rc-cta-row">
+      <a class="rc-btn" href="{{ "contact" | relLangURL }}">Request a quote</a>
+      <a class="rc-btn rc-btn--ghost" href="{{ "products" | relLangURL }}">See our products</a>
+    </div>
+
+    <div class="rc-facts">
+      <div>
+        <b>{{ len $products }}</b>
+        <span>Products in the catalog</span>
+      </div>
+      <div>
+        <b>{{ len $clients }}</b>
+        <span>Agencies &amp; primes served</span>
+      </div>
+      <div>
+        <b>{{ len $certs }}</b>
+        <span>Active certifications</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- Clients ---------- */}}
+{{ partial "rc-clients.html" . }}
+
+{{/* ---------- Capabilities ---------- */}}
+<section class="rc-caps">
+  <div class="rc-shell">
+    <p class="rc-label">Capabilities</p>
+    <h2 class="rc-section-title">Four things we do end to end</h2>
+    <div class="rc-caps-grid">
+      {{ range .Params.capabilities }}
+      <div class="rc-cap">
+        {{ partial "rc-icon.html" .icon }}
+        <h3>{{ .title }}</h3>
+        <p>{{ .body | safeHTML }}</p>
+        <a href="{{ .linkURL | relLangURL }}">{{ .linkText }}</a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ---------- Certifications ---------- */}}
+<section class="rc-certs">
+  <div class="rc-shell">
+    <p class="rc-label">Certifications</p>
+    <h2 class="rc-section-title">Qualified for set-aside work</h2>
+    <p class="rc-intro">A Woman-owned Business Enterprise with current national, federal, state and
+      authority-level certifications. Every certificate is downloadable.</p>
+    {{ partial "rc-certifications.html" . }}
+  </div>
+</section>
+
+{{/* ---------- About ---------- */}}
+{{ with .Params.about }}
+<section class="rc-about">
+  <div class="rc-shell">
+    <div>
+      <p class="rc-label">Who we are</p>
+      <h2>{{ .heading }}</h2>
+    </div>
+    <p>{{ .body | markdownify }}</p>
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

@@ -1,0 +1,11 @@
+{{/* The four certification cards, shared by the homepage and /certifications/. */}}
+<div class="rc-cert-grid">
+  {{ range site.Data.certifications.cert }}
+  <div class="rc-cert">
+    <span class="rc-cert-cat">{{ .category }}{{ with .valid }} &middot; {{ . }}{{ end }}</span>
+    <b>{{ .code }}</b>
+    <span class="rc-cert-body">{{ .summary }}</span>
+    <a href="{{ .file | relURL }}" target="_blank" rel="noopener">View certificate &darr;</a>
+  </div>
+  {{ end }}
+</div>

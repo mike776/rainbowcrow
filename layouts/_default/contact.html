@@ -1,0 +1,100 @@
+{{ define "mainclass" }}rc-full{{ end }}
+
+{{ define "main" }}
+
+<section class="rc-page-head">
+  <div class="rc-shell">
+    <p class="rc-label">{{ .Params.eyebrow | default "Contact" }}</p>
+    <h1>{{ .Params.headline | default .Title }}</h1>
+    {{ with .Params.intro }}<p class="rc-intro">{{ . }}</p>{{ end }}
+  </div>
+</section>
+
+<section class="rc-contact">
+  <div class="rc-shell">
+    <div class="rc-contact-grid">
+
+      <div>
+        {{/*
+          The form posts to whatever endpoint is set as params.contactFormAction
+          (Formspree, Netlify Forms, Basin - anything that accepts a POST). Until
+          that is configured the page falls back to a plain mailto, so it never
+          renders a form that silently drops enquiries.
+        */}}
+        {{ with site.Params.contactFormAction }}
+        <form class="rc-form" action="{{ . }}" method="POST">
+          <div class="rc-field-row">
+            <div class="rc-field">
+              <label for="rc-name">Your name</label>
+              <input id="rc-name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="rc-field">
+              <label for="rc-org">Organisation</label>
+              <input id="rc-org" name="organisation" type="text" autocomplete="organization" />
+            </div>
+          </div>
+          <div class="rc-field-row">
+            <div class="rc-field">
+              <label for="rc-email">Email</label>
+              <input id="rc-email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="rc-field">
+              <label for="rc-phone">Telephone</label>
+              <input id="rc-phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+          <div class="rc-field">
+            <label for="rc-part">Part number, if you have one</label>
+            <input id="rc-part" name="part_number" type="text" placeholder="RCD-&hellip;" />
+          </div>
+          <div class="rc-field">
+            <label for="rc-msg">What do you need?</label>
+            <textarea id="rc-msg" name="message" required
+              placeholder="Cabinet make and model, rack units, quantity, and the constraint you are working around."></textarea>
+          </div>
+          <div>
+            <button class="rc-btn" type="submit">Send enquiry</button>
+          </div>
+          <p class="rc-form-note">We reply to quote requests within one business day.</p>
+        </form>
+        {{ else }}
+        <div class="rc-prose">
+          <p>Email us with the cabinet make and model, the rack units available, the quantity, and the
+            constraint you are working around. If you already have a part number, quote it and we will
+            confirm availability and lead time.</p>
+          <p>We reply to quote requests within one business day.</p>
+        </div>
+        <div class="rc-cta-row" style="margin-top:24px">
+          <a class="rc-btn" href="mailto:sales@rainbowcrow.com?subject=Quote%20request">Email sales@rainbowcrow.com</a>
+          <a class="rc-btn rc-btn--ghost" href="tel:+12033001999">Call (203) 300-1999</a>
+        </div>
+        {{ end }}
+      </div>
+
+      <div>
+        <div class="rc-contact-card">
+          <div>
+            <span class="rc-k">Email</span>
+            <span class="rc-v"><a href="mailto:sales@rainbowcrow.com">sales@rainbowcrow.com</a></span>
+          </div>
+          <div>
+            <span class="rc-k">Telephone</span>
+            <span class="rc-v"><a href="tel:+12033001999">(203) 300-1999</a></span>
+          </div>
+          <div>
+            <span class="rc-k">Address</span>
+            <span class="rc-v">176 Camden Cay Dr<br />St. Augustine, FL 32086</span>
+          </div>
+          <div>
+            <span class="rc-k">Classification</span>
+            <span class="rc-v">Woman-owned Business Enterprise<br />
+              <a href="{{ "certifications" | relLangURL }}">WBENC &middot; SBA-WOSB &middot; PANYNJ &middot; FDMS</a></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{ end }}
