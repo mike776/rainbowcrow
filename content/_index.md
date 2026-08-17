@@ -4,7 +4,7 @@ description: "Rainbow Crow designs, manufactures and commissions fiber distribut
 
 eyebrow: "Transit infrastructure hardware"
 headline: "Rack hardware built to transit spec."
-intro: "We design, manufacture and commission fiber distribution boxes, mounting brackets and equipment shelves for transit authorities and their primes. Every part ships with a cut sheet."
+intro: "We design and manufacture, fiber distribution boxes, mounting brackets, and equipment shelves for transit authorities and their primes—all proudly designed and manufactured in the U.S."
 
 capabilities:
   - title: "Manufacturing"
