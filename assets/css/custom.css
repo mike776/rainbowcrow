@@ -989,6 +989,24 @@ html.dark .rc-titleblock .rc-v a { color: var(--rc-orange); }
 .rc-fcard:hover h3 { color: var(--rc-orange); }
 
 /* --------------------------------------------------------------------------
+   Homepage banding
+   No two neighbouring bands share a background. The chain is pinned at both
+   ends - the header is panel, the footer is sheet - which fixes the tone of
+   every section between them. Scoped to .rc-home because these same sections
+   appear in a different order, and so need different tones, on other pages.
+   -------------------------------------------------------------------------- */
+
+.rc-home .rc-clients  { background: var(--rc-panel); }
+.rc-home .rc-caps     { background: var(--rc-sheet); }
+.rc-home .rc-featured { background: var(--rc-panel); }
+.rc-home .rc-certs    { background: var(--rc-sheet); }
+
+/* Cards carry the opposite tone to the band they sit in, so they keep the
+   contrast they had before the flip. */
+.rc-home .rc-fcard .rc-plate { background: var(--rc-sheet); }
+.rc-home .rc-cert            { background: var(--rc-panel); }
+
+/* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
 

@@ -1,9 +1,101 @@
-{{ define "mainclass" }}rc-full{{ end }}
+{{ define "mainclass" }}rc-full rc-home{{ end }}
 
 {{ define "main" }}
 {{ $products := (where site.RegularPages "Section" "products").ByWeight }}
 {{ $certs := hugo.Data.certifications.cert }}
 {{ $clients := hugo.Data.clients.client }}
+
+{{/* ---------- About ---------- */}}
+{{ with .Params.about }}
+<section class="rc-about">
+  <div class="rc-shell">
+    <div>
+      <p class="rc-label">Who we are</p>
+      <h2>{{ .heading }}</h2>
+    </div>
+    <p>{{ .body | markdownify }}</p>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Clients ---------- */}}
+{{ partial "rc-clients.html" . }}
+
+{{/* ---------- Capabilities ---------- */}}
+<section class="rc-caps">
+  <div class="rc-shell">
+    <p class="rc-label">Capabilities</p>
+    <h2 class="rc-section-title">Four things we do end to end</h2>
+    <div class="rc-caps-grid">
+      {{ range .Params.capabilities }}
+      <div class="rc-cap">
+        {{ partial "rc-icon.html" .icon }}
+        <h3>{{ .title }}</h3>
+        <p>{{ .body | safeHTML }}</p>
+        <a href="{{ .linkURL | relLangURL }}">{{ .linkText }}</a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ---------- Featured products ----------
+     Sits between the two card grids so they do not read as one repeated block.
+     `featuredProducts` in the front matter takes slugs; without it the first six
+     by weight are shown. */}}
+{{ $featured := $products }}
+{{ with .Params.featuredProducts }}
+  {{ $sel := slice }}
+  {{ range . }}
+    {{ with where $products "Params.slug" . }}{{ $sel = $sel | append (index . 0) }}{{ end }}
+  {{ end }}
+  {{ with $sel }}{{ $featured = . }}{{ end }}
+{{ end }}
+{{ $featured = first 6 $featured }}
+
+{{ with $featured }}
+<section class="rc-featured">
+  <div class="rc-shell">
+    <div class="rc-catalog-head">
+      <div>
+        <p class="rc-label">From the catalog</p>
+        <h2 class="rc-section-title">Parts we have drawn, built and shipped</h2>
+      </div>
+      <a class="rc-btn rc-btn--ghost" href="{{ "products" | relLangURL }}">See all {{ len $products }} products</a>
+    </div>
+
+    <div class="rc-featured-grid">
+      {{ range . }}
+      <a class="rc-fcard" href="{{ .RelPermalink }}">
+        <figure class="rc-plate">
+          {{ with .Resources.GetMatch "featured.*" }}
+          {{ $f := .Fit "700x500 webp q80" }}
+          <img src="{{ $f.RelPermalink }}" alt="" class="nozoom" loading="lazy" />
+          {{ end }}
+          <figcaption>
+            {{ with .Params.partNumber }}<b>{{ . }}</b>{{ end }}
+            <span class="rc-label">{{ .Params.category | default "Product" }}</span>
+          </figcaption>
+        </figure>
+        <h3>{{ .Title | safeHTML }}</h3>
+        <p>{{ .Description | safeHTML }}</p>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ---------- Certifications ---------- */}}
+<section class="rc-certs">
+  <div class="rc-shell">
+    <p class="rc-label">Certifications</p>
+    <h2 class="rc-section-title">Qualified for set-aside work</h2>
+    <p class="rc-intro">A Woman-owned Business Enterprise with current national, federal, state and
+      authority-level certifications. Every certificate is downloadable.</p>
+    {{ partial "rc-certifications.html" . }}
+  </div>
+</section>
 
 {{/* ---------- Hero ----------
      Copy on the left, one product on the right set as a drawing plate. The
@@ -19,7 +111,7 @@
 
 {{/* The pool the plate cycles through: every product that has a featured image.
      Source PNGs run up to 5 MB, so they are fitted and converted to webp here
-     rather than served raw - the catalog strip below gets the same treatment. */}}
+     rather than served raw - the catalog strip gets the same treatment. */}}
 {{ $plates := slice }}
 {{ range $products }}
   {{ $p := . }}
@@ -116,97 +208,5 @@
     </div>
   </div>
 </section>
-
-{{/* ---------- Clients ---------- */}}
-{{ partial "rc-clients.html" . }}
-
-{{/* ---------- Capabilities ---------- */}}
-<section class="rc-caps">
-  <div class="rc-shell">
-    <p class="rc-label">Capabilities</p>
-    <h2 class="rc-section-title">Four things we do end to end</h2>
-    <div class="rc-caps-grid">
-      {{ range .Params.capabilities }}
-      <div class="rc-cap">
-        {{ partial "rc-icon.html" .icon }}
-        <h3>{{ .title }}</h3>
-        <p>{{ .body | safeHTML }}</p>
-        <a href="{{ .linkURL | relLangURL }}">{{ .linkText }}</a>
-      </div>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
-{{/* ---------- Featured products ----------
-     Sits between the two card grids so they do not read as one repeated block.
-     `featuredProducts` in the front matter takes slugs; without it the first six
-     by weight are shown. */}}
-{{ $featured := $products }}
-{{ with .Params.featuredProducts }}
-  {{ $sel := slice }}
-  {{ range . }}
-    {{ with where $products "Params.slug" . }}{{ $sel = $sel | append (index . 0) }}{{ end }}
-  {{ end }}
-  {{ with $sel }}{{ $featured = . }}{{ end }}
-{{ end }}
-{{ $featured = first 6 $featured }}
-
-{{ with $featured }}
-<section class="rc-featured">
-  <div class="rc-shell">
-    <div class="rc-catalog-head">
-      <div>
-        <p class="rc-label">From the catalog</p>
-        <h2 class="rc-section-title">Parts we have drawn, built and shipped</h2>
-      </div>
-      <a class="rc-btn rc-btn--ghost" href="{{ "products" | relLangURL }}">See all {{ len $products }} products</a>
-    </div>
-
-    <div class="rc-featured-grid">
-      {{ range . }}
-      <a class="rc-fcard" href="{{ .RelPermalink }}">
-        <figure class="rc-plate">
-          {{ with .Resources.GetMatch "featured.*" }}
-          {{ $f := .Fit "700x500 webp q80" }}
-          <img src="{{ $f.RelPermalink }}" alt="" class="nozoom" loading="lazy" />
-          {{ end }}
-          <figcaption>
-            {{ with .Params.partNumber }}<b>{{ . }}</b>{{ end }}
-            <span class="rc-label">{{ .Params.category | default "Product" }}</span>
-          </figcaption>
-        </figure>
-        <h3>{{ .Title | safeHTML }}</h3>
-        <p>{{ .Description | safeHTML }}</p>
-      </a>
-      {{ end }}
-    </div>
-  </div>
-</section>
-{{ end }}
-
-{{/* ---------- Certifications ---------- */}}
-<section class="rc-certs">
-  <div class="rc-shell">
-    <p class="rc-label">Certifications</p>
-    <h2 class="rc-section-title">Qualified for set-aside work</h2>
-    <p class="rc-intro">A Woman-owned Business Enterprise with current national, federal, state and
-      authority-level certifications. Every certificate is downloadable.</p>
-    {{ partial "rc-certifications.html" . }}
-  </div>
-</section>
-
-{{/* ---------- About ---------- */}}
-{{ with .Params.about }}
-<section class="rc-about">
-  <div class="rc-shell">
-    <div>
-      <p class="rc-label">Who we are</p>
-      <h2>{{ .heading }}</h2>
-    </div>
-    <p>{{ .body | markdownify }}</p>
-  </div>
-</section>
-{{ end }}
 
 {{ end }}
