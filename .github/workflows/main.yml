@@ -44,6 +44,10 @@ jobs:
 
 # Deployment job
   deploy:
+    # Only master publishes. Without this a pull_request build would push
+    # straight to the live site, and would hold the github-pages environment
+    # while doing it. workflow_dispatch on master still deploys.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
