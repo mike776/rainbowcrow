@@ -15,11 +15,18 @@ jobs:
     runs-on: ubuntu-22.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+      # A newer push supersedes an older build instead of queueing behind it.
+      # Safe here: the group covers the build only, so a deploy already under
+      # way is never interrupted.
+      cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          # Shallow: nothing here reads .GitInfo or .Lastmod (enableGitInfo is
+          # unset), so the full history of this repo and of the 59 MB Blowfish
+          # submodule is time spent for nothing.
+          fetch-depth: 1
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
