@@ -1,23 +1,104 @@
 {{ define "mainclass" }}rc-full{{ end }}
 
 {{ define "main" }}
-{{ $products := where site.RegularPages "Section" "products" }}
-{{ $certs := site.Data.certifications.cert }}
-{{ $clients := site.Data.clients.client }}
+{{ $products := (where site.RegularPages "Section" "products").ByWeight }}
+{{ $certs := hugo.Data.certifications.cert }}
+{{ $clients := hugo.Data.clients.client }}
 
 {{/* ---------- Hero ----------
-     Type-only by request: no product imagery on the homepage. The drafting-grid
-     ground and the corner ticks carry the sheet character instead. */}}
-<section class="rc-hero rc-hero--plain">
-  <div class="rc-shell">
-    <p class="rc-label">{{ .Params.eyebrow }}</p>
-    <h1>{{ .Params.headline }}</h1>
-    <p class="rc-intro">{{ .Params.intro }}</p>
+     Copy on the left, one product on the right set as a drawing plate. The
+     plate advances to the next product on every page open (see the inline
+     script below). `heroProduct` picks what the server renders, which is what
+     crawlers and anyone without JavaScript get. */}}
+{{ $hero := "" }}
+{{ with .Params.heroProduct }}
+  {{ $match := where $products "Params.slug" . }}
+  {{ with $match }}{{ $hero = index . 0 }}{{ end }}
+{{ end }}
+{{ if not $hero }}{{ with $products }}{{ $hero = index . 0 }}{{ end }}{{ end }}
 
-    <div class="rc-cta-row">
-      <a class="rc-btn" href="{{ "contact" | relLangURL }}">Request a quote</a>
-      <a class="rc-btn rc-btn--ghost" href="{{ "products" | relLangURL }}">See our products</a>
+{{/* The pool the plate cycles through: every product that has a featured image.
+     Source PNGs run up to 5 MB, so they are fitted and converted to webp here
+     rather than served raw - the catalog strip below gets the same treatment. */}}
+{{ $plates := slice }}
+{{ range $products }}
+  {{ $p := . }}
+  {{ with $p.Resources.GetMatch "featured.*" }}
+  {{ $f := .Fit "1000x700 webp q80" }}
+  {{ $plates = $plates | append (dict
+      "src" $f.RelPermalink
+      "alt" ($p.Title | plainify | htmlUnescape)
+      "pn"  ($p.Params.partNumber | default "")
+      "cat" ($p.Params.category | default "Product")) }}
+  {{ end }}
+{{ end }}
+
+<section class="rc-hero rc-hero--split">
+  <div class="rc-shell">
+    <div class="rc-hero-copy">
+      <p class="rc-label">{{ .Params.eyebrow }}</p>
+      <h1>{{ .Params.headline }}</h1>
+      <p class="rc-intro">{{ .Params.intro }}</p>
+
+      <div class="rc-cta-row">
+        <a class="rc-btn" href="{{ "contact" | relLangURL }}">Request a quote</a>
+        <a class="rc-btn rc-btn--ghost" href="{{ "products" | relLangURL }}">See our products</a>
+      </div>
     </div>
+
+    {{ with $hero }}
+    {{ with .Resources.GetMatch "featured.*" }}
+    {{ $f := .Fit "1000x700 webp q80" }}
+    <figure class="rc-plate rc-hero-plate" id="rc-hero-plate" data-plates='{{ $plates | jsonify }}'>
+      <img src="{{ $f.RelPermalink }}" alt="{{ $hero.Title | plainify | htmlUnescape }}" class="nozoom" />
+      <figcaption>
+        {{/* Always emitted, so the script has something to write into: projects
+             such as the PATH signage system carry no part number. */}}
+        <b{{ if not $hero.Params.partNumber }} hidden{{ end }}>{{ $hero.Params.partNumber }}</b>
+        <span class="rc-label">{{ $hero.Params.category | default "Product" }}</span>
+      </figcaption>
+    </figure>
+    {{ end }}
+    {{ end }}
+
+    {{/* Runs inline, immediately after the figure, so the plate is swapped
+         before the first paint rather than visibly changing afterwards. */}}
+    <script>
+    (function () {
+      var fig = document.getElementById("rc-hero-plate");
+      if (!fig) { return; }
+
+      var plates;
+      try { plates = JSON.parse(fig.getAttribute("data-plates")); }
+      catch (e) { return; }
+      if (!plates || plates.length < 2) { return; }
+
+      /* Advance one step per page open, so a repeat visitor is walked through
+         the whole catalog instead of a random pick that can show the same part
+         twice in a row. First visit starts somewhere random so that every
+         visitor does not open on the same product. */
+      var key = "rc-hero-plate", i;
+      try {
+        var prev = window.localStorage.getItem(key);
+        i = prev === null
+          ? Math.floor(Math.random() * plates.length)
+          : (parseInt(prev, 10) + 1) % plates.length;
+        if (!(i >= 0 && i < plates.length)) { i = 0; }
+        window.localStorage.setItem(key, i);
+      } catch (e) {
+        i = Math.floor(Math.random() * plates.length);  /* storage blocked */
+      }
+
+      var p = plates[i];
+      var img = fig.querySelector("img");
+      var pn = fig.querySelector("figcaption b");
+      var cat = fig.querySelector("figcaption .rc-label");
+
+      if (img) { img.src = p.src; img.alt = p.alt; }
+      if (pn) { pn.textContent = p.pn; pn.hidden = !p.pn; }
+      if (cat) { cat.textContent = p.cat; }
+    })();
+    </script>
 
     <div class="rc-facts">
       <div>
@@ -56,6 +137,53 @@
     </div>
   </div>
 </section>
+
+{{/* ---------- Featured products ----------
+     Sits between the two card grids so they do not read as one repeated block.
+     `featuredProducts` in the front matter takes slugs; without it the first six
+     by weight are shown. */}}
+{{ $featured := $products }}
+{{ with .Params.featuredProducts }}
+  {{ $sel := slice }}
+  {{ range . }}
+    {{ with where $products "Params.slug" . }}{{ $sel = $sel | append (index . 0) }}{{ end }}
+  {{ end }}
+  {{ with $sel }}{{ $featured = . }}{{ end }}
+{{ end }}
+{{ $featured = first 6 $featured }}
+
+{{ with $featured }}
+<section class="rc-featured">
+  <div class="rc-shell">
+    <div class="rc-catalog-head">
+      <div>
+        <p class="rc-label">From the catalog</p>
+        <h2 class="rc-section-title">Parts we have drawn, built and shipped</h2>
+      </div>
+      <a class="rc-btn rc-btn--ghost" href="{{ "products" | relLangURL }}">See all {{ len $products }} products</a>
+    </div>
+
+    <div class="rc-featured-grid">
+      {{ range . }}
+      <a class="rc-fcard" href="{{ .RelPermalink }}">
+        <figure class="rc-plate">
+          {{ with .Resources.GetMatch "featured.*" }}
+          {{ $f := .Fit "700x500 webp q80" }}
+          <img src="{{ $f.RelPermalink }}" alt="" class="nozoom" loading="lazy" />
+          {{ end }}
+          <figcaption>
+            {{ with .Params.partNumber }}<b>{{ . }}</b>{{ end }}
+            <span class="rc-label">{{ .Params.category | default "Product" }}</span>
+          </figcaption>
+        </figure>
+        <h3>{{ .Title | safeHTML }}</h3>
+        <p>{{ .Description | safeHTML }}</p>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
 
 {{/* ---------- Certifications ---------- */}}
 <section class="rc-certs">

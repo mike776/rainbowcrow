@@ -7,7 +7,7 @@
   <div class="rc-shell">
     <p class="rc-label">Supplying</p>
     <ul>
-      {{ range site.Data.clients.client }}
+      {{ range hugo.Data.clients.client }}
       <li><img src="{{ .logo | relURL }}" alt="{{ .name }}" loading="lazy" class="nozoom" /></li>
       {{ end }}
     </ul>
