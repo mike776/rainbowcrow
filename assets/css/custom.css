@@ -376,26 +376,15 @@ html.dark .rc-dd-pn { color: var(--rc-orange); }
   background: var(--rc-panel);
   border-bottom: 1px solid var(--rc-line);
 }
+/* Type-only hero: no product imagery. Kept deliberately quiet - a single
+   blueprint rule over the eyebrow is the only device, so the headline carries
+   the section rather than competing with a picture. One column: the copy sets
+   its own measure through the max-widths below, and the stat row closes the
+   section at full width. */
 .rc-hero .rc-shell {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 56px;
-  align-items: center;
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
-/* Type-only hero: no product imagery on the homepage. Kept deliberately quiet -
-   a single blueprint rule over the eyebrow is the only device, so the headline
-   carries the page rather than competing with a background pattern. */
-/* Homepage hero: copy on the left, one product as a drawing plate on the right.
-   The eyebrow rule is scoped to .rc-hero-copy so it does not also land on the
-   .rc-label inside the plate's caption. */
-.rc-hero--split .rc-shell {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 40px 60px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 40px;
   padding-top: 74px;
   padding-bottom: 60px;
 }
@@ -410,21 +399,8 @@ html.dark .rc-dd-pn { color: var(--rc-orange); }
   background: var(--rc-blue);
 }
 html.dark .rc-hero-copy > .rc-label::before { background: var(--rc-orange); }
-.rc-hero--split h1 { max-width: 15ch; font-size: clamp(32px, 4.2vw, 48px); }
-.rc-hero--split p.rc-intro { max-width: 46ch; font-size: 17px; }
-.rc-hero--split .rc-cta-row { margin-bottom: 0; }
-
-/* The stat row runs the full width under both columns. */
-.rc-hero--split .rc-facts { grid-column: 1 / -1; }
-
-.rc-hero-plate { margin: 0; }
-.rc-hero-plate img { height: 300px; }
-/* The plate cycles through products and not all of them carry a part number, so
-   the category is pinned right rather than left by space-between's fallback. */
-.rc-hero-plate figcaption .rc-label { margin-left: auto; }
-
 .rc-hero h1 {
-  font-size: clamp(30px, 3.8vw, 44px);
+  font-size: clamp(32px, 4.2vw, 48px);
   line-height: 1.06;
   letter-spacing: -0.03em;
   font-weight: 700;
@@ -434,10 +410,11 @@ html.dark .rc-hero-copy > .rc-label::before { background: var(--rc-orange); }
 }
 .rc-hero p.rc-intro {
   color: var(--rc-mute);
-  font-size: 16px;
+  font-size: 17px;
   max-width: 46ch;
   margin: 0 0 26px;
 }
+.rc-hero .rc-cta-row { margin-bottom: 0; }
 .rc-cta-row { display: flex; gap: 11px; flex-wrap: wrap; margin-bottom: 30px; }
 
 /* Grid, not flex: three equal cells always hold one row inside the hero column. */
@@ -996,15 +973,8 @@ html.dark .rc-titleblock .rc-v a { color: var(--rc-orange); }
    appear in a different order, and so need different tones, on other pages.
    -------------------------------------------------------------------------- */
 
-.rc-home .rc-clients  { background: var(--rc-panel); }
-.rc-home .rc-caps     { background: var(--rc-sheet); }
-.rc-home .rc-featured { background: var(--rc-panel); }
-.rc-home .rc-certs    { background: var(--rc-sheet); }
-
-/* Cards carry the opposite tone to the band they sit in, so they keep the
-   contrast they had before the flip. */
-.rc-home .rc-fcard .rc-plate { background: var(--rc-sheet); }
-.rc-home .rc-cert            { background: var(--rc-panel); }
+.rc-home .rc-clients { background: var(--rc-panel); }
+.rc-home .rc-caps    { background: var(--rc-sheet); }
 
 /* --------------------------------------------------------------------------
    Responsive
@@ -1030,7 +1000,6 @@ html.dark .rc-titleblock .rc-v a { color: var(--rc-orange); }
   .rc-contact-grid { grid-template-columns: 1fr; gap: 34px; }
 
   .rc-hero h1 { max-width: none; }
-  .rc-hero--split .rc-shell { align-items: start; }
   .rc-plate img { height: 220px; }
   .rc-facts div { padding-right: 16px; margin-right: 16px; }
 }

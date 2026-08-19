@@ -6,10 +6,6 @@ eyebrow: "Transit infrastructure hardware"
 headline: "Rack hardware built to transit spec."
 intro: "We design and manufacture, fiber distribution boxes, mounting brackets, and equipment shelves for transit authorities and their primes—all proudly designed and manufactured in the U.S."
 
-# Slug of the product shown as the drawing plate in the hero. Falls back to the
-# lightest-weight product if the slug does not match.
-heroProduct: "UBR"
-
 # Slugs of the products shown in the homepage catalog strip, in order.
 # Without this key the first six by weight are used.
 featuredProducts:

@@ -39,8 +39,18 @@
   </div>
 </section>
 
+{{/* ---------- Certifications ---------- */}}
+<section class="rc-certs">
+  <div class="rc-shell">
+    <p class="rc-label">Certifications</p>
+    <h2 class="rc-section-title">Qualified for set-aside work</h2>
+    <p class="rc-intro">A Woman-owned Business Enterprise with current national, federal, state and
+      authority-level certifications. Every certificate is downloadable.</p>
+    {{ partial "rc-certifications.html" . }}
+  </div>
+</section>
+
 {{/* ---------- Featured products ----------
-     Sits between the two card grids so they do not read as one repeated block.
      `featuredProducts` in the front matter takes slugs; without it the first six
      by weight are shown. */}}
 {{ $featured := $products }}
@@ -86,46 +96,10 @@
 </section>
 {{ end }}
 
-{{/* ---------- Certifications ---------- */}}
-<section class="rc-certs">
-  <div class="rc-shell">
-    <p class="rc-label">Certifications</p>
-    <h2 class="rc-section-title">Qualified for set-aside work</h2>
-    <p class="rc-intro">A Woman-owned Business Enterprise with current national, federal, state and
-      authority-level certifications. Every certificate is downloadable.</p>
-    {{ partial "rc-certifications.html" . }}
-  </div>
-</section>
-
 {{/* ---------- Hero ----------
-     Copy on the left, one product on the right set as a drawing plate. The
-     plate advances to the next product on every page open (see the inline
-     script below). `heroProduct` picks what the server renders, which is what
-     crawlers and anyone without JavaScript get. */}}
-{{ $hero := "" }}
-{{ with .Params.heroProduct }}
-  {{ $match := where $products "Params.slug" . }}
-  {{ with $match }}{{ $hero = index . 0 }}{{ end }}
-{{ end }}
-{{ if not $hero }}{{ with $products }}{{ $hero = index . 0 }}{{ end }}{{ end }}
-
-{{/* The pool the plate cycles through: every product that has a featured image.
-     Source PNGs run up to 5 MB, so they are fitted and converted to webp here
-     rather than served raw - the catalog strip gets the same treatment. */}}
-{{ $plates := slice }}
-{{ range $products }}
-  {{ $p := . }}
-  {{ with $p.Resources.GetMatch "featured.*" }}
-  {{ $f := .Fit "1000x700 webp q80" }}
-  {{ $plates = $plates | append (dict
-      "src" $f.RelPermalink
-      "alt" ($p.Title | plainify | htmlUnescape)
-      "pn"  ($p.Params.partNumber | default "")
-      "cat" ($p.Params.category | default "Product")) }}
-  {{ end }}
-{{ end }}
-
-<section class="rc-hero rc-hero--split">
+     Type only - no product imagery. The headline carries the section, with the
+     stat row closing it out. */}}
+<section class="rc-hero">
   <div class="rc-shell">
     <div class="rc-hero-copy">
       <p class="rc-label">{{ .Params.eyebrow }}</p>
@@ -137,60 +111,6 @@
         <a class="rc-btn rc-btn--ghost" href="{{ "products" | relLangURL }}">See our products</a>
       </div>
     </div>
-
-    {{ with $hero }}
-    {{ with .Resources.GetMatch "featured.*" }}
-    {{ $f := .Fit "1000x700 webp q80" }}
-    <figure class="rc-plate rc-hero-plate" id="rc-hero-plate" data-plates='{{ $plates | jsonify }}'>
-      <img src="{{ $f.RelPermalink }}" alt="{{ $hero.Title | plainify | htmlUnescape }}" class="nozoom" />
-      <figcaption>
-        {{/* Always emitted, so the script has something to write into: projects
-             such as the PATH signage system carry no part number. */}}
-        <b{{ if not $hero.Params.partNumber }} hidden{{ end }}>{{ $hero.Params.partNumber }}</b>
-        <span class="rc-label">{{ $hero.Params.category | default "Product" }}</span>
-      </figcaption>
-    </figure>
-    {{ end }}
-    {{ end }}
-
-    {{/* Runs inline, immediately after the figure, so the plate is swapped
-         before the first paint rather than visibly changing afterwards. */}}
-    <script>
-    (function () {
-      var fig = document.getElementById("rc-hero-plate");
-      if (!fig) { return; }
-
-      var plates;
-      try { plates = JSON.parse(fig.getAttribute("data-plates")); }
-      catch (e) { return; }
-      if (!plates || plates.length < 2) { return; }
-
-      /* Advance one step per page open, so a repeat visitor is walked through
-         the whole catalog instead of a random pick that can show the same part
-         twice in a row. First visit starts somewhere random so that every
-         visitor does not open on the same product. */
-      var key = "rc-hero-plate", i;
-      try {
-        var prev = window.localStorage.getItem(key);
-        i = prev === null
-          ? Math.floor(Math.random() * plates.length)
-          : (parseInt(prev, 10) + 1) % plates.length;
-        if (!(i >= 0 && i < plates.length)) { i = 0; }
-        window.localStorage.setItem(key, i);
-      } catch (e) {
-        i = Math.floor(Math.random() * plates.length);  /* storage blocked */
-      }
-
-      var p = plates[i];
-      var img = fig.querySelector("img");
-      var pn = fig.querySelector("figcaption b");
-      var cat = fig.querySelector("figcaption .rc-label");
-
-      if (img) { img.src = p.src; img.alt = p.alt; }
-      if (pn) { pn.textContent = p.pn; pn.hidden = !p.pn; }
-      if (cat) { cat.textContent = p.cat; }
-    })();
-    </script>
 
     <div class="rc-facts">
       <div>
