@@ -115,14 +115,14 @@ disableImageZoom = true
   cardViewScreenWidth = false
 
 
-[firebase]
-  apiKey = "AIzaSyCVBIyDrMj3DqSwZNMw8eahjg7S1_hmXEU"
-  authDomain = "rainbowcrow-9f76c.firebaseapp.com"
-  projectId = "rainbowcrow-9f76c"
-  storageBucket = "rainbowcrow-9f76c.appspot.com"
-  messagingSenderId = "245405313411"
-  appId = "1:245405313411:web:1699f277839fb5700d6eb6"
-  measurementId = "G-QKBD3LX7BF"
+#[firebase]
+#  apiKey = "AIzaSyCVBIyDrMj3DqSwZNMw8eahjg7S1_hmXEU"
+#  authDomain = "rainbowcrow-9f76c.firebaseapp.com"
+#  projectId = "rainbowcrow-9f76c"
+#  storageBucket = "rainbowcrow-9f76c.appspot.com"
+#  messagingSenderId = "245405313411"
+#  appId = "1:245405313411:web:1699f277839fb5700d6eb6"
+#  measurementId = "G-C6JEHTXMG2" #G-QKBD3LX7BF"
 
 [fathomAnalytics]
   # site = "ABC12345"
