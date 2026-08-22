@@ -19,7 +19,7 @@ summaryLength = 30
 buildDrafts = false
 buildFuture = true
 
-googleAnalytics = "G-C6JEHTXMG2" # "G-QKBD3LX7BF"
+googleAnalytics = "G-C6JEHTXMG2" # Rainbowcrow.com
 
 [imaging]
   anchor = 'Center'
